@@ -11,10 +11,8 @@ Running
 
 1. Build the source
 2. Run the program
-3. Open the console window properties and set the font to 8x8 raster for the
-   *squarest pixels yo*
-4. Type in a path to a CHIP-8 game (relative to the exe)
-5. Press Enter to play!
+3. Type in a path to a CHIP-8 game (relative to the exe)
+4. Press Enter to play!
 
 (This project relies on P/Invoke to interact with the native Windows API, and
 thus only Windows Desktop platforms are supported at the moment)
@@ -53,8 +51,6 @@ TODOs / Up For Grabs
 * Implement a less flickery method of drawing to the console
   - Collision detection is done by inverting pixels on the screen, and it's
     quite evident...
-* Change default font to raster 8x8 automatically
-  - The Windows API documentation on setting console fonts is ridiculous
 * Less abrupt audio cut off
   - Sound is implemented by looping a dynamically-generated WAV file until a
     timer hits 0

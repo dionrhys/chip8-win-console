@@ -36,6 +36,19 @@ namespace CHIP_8
 				IntPtr.Zero);
 			if (ConsoleOutputHandle.IsInvalid)
 				throw new Exception($"Invalid CONOUT$ handle: {new Win32Exception(Marshal.GetLastWin32Error()).Message}");
+
+			// Set console font to the square 8x8 raster font
+			var cfi = new WinApi.CONSOLE_FONT_INFOEX();
+			cfi.cbSize = (uint)Marshal.SizeOf(cfi);
+			cfi.nFont = 0;
+			cfi.dwFontSize.X = 8;
+			cfi.dwFontSize.Y = 8;
+			cfi.FontFamily = WinApi.FF_DONTCARE;
+			cfi.FontWeight = WinApi.FW_DONTCARE;
+			cfi.FaceName = "";
+			bool success = WinApi.SetCurrentConsoleFontEx(ConsoleOutputHandle, false, ref cfi);
+			if (!success)
+				throw new Exception($"SetCurrentConsoleFontEx failed: {new Win32Exception(Marshal.GetLastWin32Error()).Message}");
 		}
 
 		public void Clear()

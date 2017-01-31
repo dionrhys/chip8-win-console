@@ -21,6 +21,9 @@ namespace CHIP_8
 
 		public const uint KEY_EVENT = 1;
 
+		public const uint FF_DONTCARE = 0;
+		public const uint FW_DONTCARE = 0;
+
 		[DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Auto)]
 		public static extern SafeFileHandle CreateFile(
 			string lpFileName,
@@ -51,6 +54,12 @@ namespace CHIP_8
 			[Out] INPUT_RECORD[] lpBuffer,
 			uint nLength,
 			out uint lpNumberOfEventsRead);
+
+		[DllImport("kernel32.dll", SetLastError = true)]
+		public static extern bool SetCurrentConsoleFontEx(
+			SafeFileHandle hConsoleOutput,
+			bool bMaximumWindow,
+			ref CONSOLE_FONT_INFOEX lpConsoleCurrentFontEx);
 
 		[DllImport("winmm.dll")]
 		public static extern uint timeBeginPeriod(uint uPeriod);
@@ -133,6 +142,21 @@ namespace CHIP_8
 			public short Top;
 			public short Right;
 			public short Bottom;
+		}
+
+		private const int LF_FACESIZE = 32;
+
+		[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Unicode)]
+		public struct CONSOLE_FONT_INFOEX
+		{
+			public uint cbSize;
+			public uint nFont;
+			public COORD dwFontSize;
+			public uint FontFamily;
+			public uint FontWeight;
+
+			[MarshalAs(UnmanagedType.ByValTStr, SizeConst = LF_FACESIZE)]
+			public string FaceName;
 		}
 	}
 }

@@ -28,7 +28,8 @@ namespace CHIP_8
 				case 0xD: return Decode_D(instruction);
 				case 0xE: return Decode_E(instruction);
 				case 0xF: return Decode_F(instruction);
-				default: throw new Exception();
+				// A mathematically-impossible default case to pacify the compiler
+				 default: throw new Exception($"Invalid instruction 0x{instruction.Value:X4}");
 			}
 		}
 

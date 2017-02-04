@@ -239,7 +239,7 @@ namespace CHIP_8
 				if (V[(instruction & 0x0F00) >> 8] != V[(instruction & 0x00F0) >> 4])
 				{
 					if ((ProgramCounter + 2) > 4094)
-						throw new Exception("Cannot call subroutine - address outside Memory range");
+						throw new Exception("Cannot skip instruction - address outside Memory range");
 					ProgramCounter += 2;
 				}
 			}

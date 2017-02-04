@@ -102,8 +102,8 @@ namespace CHIP_8
 
 		private void ExecuteInstruction(Instruction instruction)
 		{
-			// Use a switch table based on the first nibble to avoid lots of if/else branches
-			// (Hopefully this'll also result in tail call optimization for all calls, but I haven't checked that out)
+			// Switch on the first nibble to avoid lots of conditional branching (encourage a jump table)
+			// (Hopefully this may also result in tail call optimization for all calls, but I haven't checked that out)
 			switch ((instruction.Value & 0xF000) >> 12)
 			{
 				case 0x0: Exec_0_Syscall(instruction); return;

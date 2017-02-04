@@ -86,7 +86,7 @@ namespace CHIP_8
 
 				Keyboard.ProcessInputEvents();
 
-				if (ProgramCounter >= 4096)
+				if (ProgramCounter > 4094)
 					throw new Exception("ProgramCounter outside Memory range");
 				if (RequireInstructionsToBeTwoByteAligned && ProgramCounter % 2 != 0)
 					throw new Exception("ProgramCounter on odd address");

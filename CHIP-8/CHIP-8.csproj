@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="Chip8.cs" />
     <Compile Include="Disassembler.cs" />
+    <Compile Include="Instruction.cs" />
     <Compile Include="Keyboard.cs" />
     <Compile Include="Sound.cs" />
     <Compile Include="WinApi.cs" />

@@ -94,13 +94,6 @@ namespace CHIP_8
 					// Also filter out keys that are repeated (already being held down), we want first hits only
 					// TODO: The filtering out repeated of already-pressed keys isn't working, Windows just sends key down events
 					// with a repeat count of 1 while holding down a key :(
-					System.Diagnostics.Debug.WriteLine(
-						"Key Event: Down = {0}, VK = {1}, SC = {2}, RepeatCount = {3}",
-						keyEvent.bKeyDown,
-						keyEvent.wVirtualKeyCode,
-						keyEvent.wVirtualScanCode,
-						keyEvent.wRepeatCount
-					);
 					if (keyEvent.bKeyDown && keyEvent.wRepeatCount == 1 && WindowsVirtualScanCodeIsChip8Key(keyEvent.wVirtualScanCode))
 					{
 						return WindowsVirtualScanCodeToChip8Key(keyEvent.wVirtualScanCode);
